@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "semantic-ui-css/semantic.min.css";
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import LandingPage from "./Pages/Landing/index"
+// import Login from "./Pages/Login/index"
+// import Register from "./Pages/Register/index"
+import Dashboard from "./Pages/Dashboard/index"
+// import Expenses from "./Pages/Dashboard/Expenses/index"
+// import Reports from "./Pages/Dashboard/Report/index"
+// import AdminLogin from "./Pages/Admin/Login/index"
+// import AdminDashboard from "./Pages/Admin/index"
+// import UserExpensePage from "./Pages/Admin/Expenses/index"
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div> 
+      <Router>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          {/* <Route exact path="/login" component={Login} /> */}
+          {/* <Route exact path="/register" component={Register} /> */}
+          {/* <Route exact path="/admin/login" component={AdminLogin} /> */}
+          {/* <Route exact path="/admin/dashboard" component={AdminDashboard} /> */}
+          {/* <Route exact path="/admin/dashboard/user/:id" component={UserExpensePage} /> */}
+          <Route exact path="/dashboard" component={Dashboard} /> 
+          {/* <Route exact path="/dashboard/expenses" component={Expenses} /> */}
+          {/* <Route exact path="/dashboard/reports" component={Reports} /> */}
+        </Switch>
+      </Router>
     </div>
   );
 }

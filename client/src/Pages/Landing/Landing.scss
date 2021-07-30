@@ -1,0 +1,19 @@
+.frontpage{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    flex-direction: column-reverse;
+
+    &__img {
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.frontPageImg {
+    margin-left: 20%;
+    height: 500px;
+}

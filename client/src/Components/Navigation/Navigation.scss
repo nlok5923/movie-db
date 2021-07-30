@@ -1,0 +1,29 @@
+nav.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-top: 10px;
+}
+.logo a{
+    font-size: 25px;
+    color: #03256c;
+    font-weight: bold;
+}
+nav ul.navLink{
+    list-style-type: none;
+    display: flex;
+    font-size: 20px;
+}
+.navLink li a{
+    text-decoration: none;
+    color: #323232;
+}
+.navLink li{
+    cursor: pointer;
+    // margin-left: 20px;
+    margin-top: -20px;
+}
+.navLink li:hover{
+    color: #03256c;
+    border-bottom: 1px solid #03256c;
+}
