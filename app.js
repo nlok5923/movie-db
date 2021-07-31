@@ -5,7 +5,6 @@ var logger = require('morgan');
 const cors = require('cors');
 var indexRouter = require('./routes/index');
 var session = require('express-session');
-var bodyParser = require('body-parser')
 const { dbSetup } = require('./connections/db')
 require('dotenv').config();
 
@@ -16,8 +15,6 @@ app.use(cors({ credentials: true }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json({ limit: '10mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 app.use(
   session({

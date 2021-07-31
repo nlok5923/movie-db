@@ -6,7 +6,7 @@ var express = require("express");
 let userEmail = "";
 
 router.get("/", function (req, res, next) {
-  res.render("app listening your request !!");
+  res.send("app listening your request !!");
 });
 
 router.post("/register", async (req, res, next) => {
