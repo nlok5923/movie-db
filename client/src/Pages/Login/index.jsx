@@ -9,7 +9,7 @@ import {
   Icon,
 } from "semantic-ui-react";
 import Axios from "axios";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Login.scss";
 import Navbar from "../../Components/Navigation/index";
 

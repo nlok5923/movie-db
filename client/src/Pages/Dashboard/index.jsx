@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Dashboard.scss";
-import { Container, Header, Grid, Input, Dropdown } from "semantic-ui-react";
+import { Container, Header, Grid, Dropdown } from "semantic-ui-react";
 import { sendCategory } from "../../Extras/item";
 import Loader from "../../Components/Loader/index";
 import SearchBar from "../../Components/Search";
@@ -8,7 +8,9 @@ import { Redirect } from "react-router-dom";
 import Axios from "axios";
 import MovieCard from "../../Components/Card/index";
 import HamburgerMenu from "../../Components/HamburgerMenu/index";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import dotenv from "dotenv";
+dotenv.config();
 
 const Dashboard = () => {
   const [searchTitle, setSearchTitle] = useState("avenger");
@@ -16,7 +18,8 @@ const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
   const [search, setSearch] = useState("avengers");
   const [movies, setMovies] = useState([]);
-  const apiPrefx = "http://www.omdbapi.com/?apikey=a342fd49";
+  const apiPrefx =
+    "http://www.omdbapi.com/?apikey=a342fd49" + process.env.REACT_APP_API_KEY;
   const [favourite, setFavouite] = useState([]);
   const [auth, setAuth] = useState(true);
 
@@ -41,9 +44,12 @@ const Dashboard = () => {
 
   const checkAuth = () => {
     const endpoint = "http://localhost:5000/check-auth";
-    Axios.get(endpoint).then(status => { console.log(status); setAuth(status.data)});
-  }
-  
+    Axios.get(endpoint).then((status) => {
+      console.log(status);
+      setAuth(status.data);
+    });
+  };
+
   useEffect(() => {
     checkAuth();
     fetchMovies("avenger");
@@ -59,56 +65,60 @@ const Dashboard = () => {
   };
 
   const notifyUser = (state) => {
-    if(state) {
-      toast('Added in favourite');
+    if (state) {
+      toast("Added in favourite");
     } else {
-    toast('Already added in favourite');
+      toast("Already added in favourite");
     }
-  }
+  };
   return (
     <div className="container">
       {!auth && <Redirect to="/" />}
-      { auth &&
-      <div>
-        <HamburgerMenu>
-          <Toaster />
-          <Header as="h3">All movies are listed here !!</Header>
-          <SearchBar
-            fetchQueriedMovies={fetchMovies}
-            setLoaderState={setLoaderState}
-          />
-          <label> Filter your search </label> <br />
-          <Dropdown
-            floated="right"
-            clearable
-            options={sendCategory()}
-            name="category"
-            selection
-            onChange={(e, data) => handleCategorySelection(e, data)}
-          />
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <Grid stackable columns={4}>
-              {movies &&
-                movies
-                  .filter((data) =>
-                    !!category ? data.Year === category : true
-                  )
-                  .map((data) => {
-                    return (
-                      <Grid.Column>
-                        <Container fluid textAlign="center">
-                          <MovieCard data={data} notifyUser={notifyUser} favourite={favourite} />
-                        </Container>
-                      </Grid.Column>
-                    );
-                  })}
-            </Grid>
-          )}
-        </HamburgerMenu>
-      </div>
-}
+      {auth && (
+        <div>
+          <HamburgerMenu>
+            <Toaster />
+            <Header as="h3">All movies are listed here !!</Header>
+            <SearchBar
+              fetchQueriedMovies={fetchMovies}
+              setLoaderState={setLoaderState}
+            />
+            <label> Filter your search </label> <br />
+            <Dropdown
+              floated="right"
+              clearable
+              options={sendCategory()}
+              name="category"
+              selection
+              onChange={(e, data) => handleCategorySelection(e, data)}
+            />
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <Grid stackable columns={4}>
+                {movies &&
+                  movies
+                    .filter((data) =>
+                      !!category ? data.Year === category : true
+                    )
+                    .map((data) => {
+                      return (
+                        <Grid.Column>
+                          <Container fluid textAlign="center">
+                            <MovieCard
+                              data={data}
+                              notifyUser={notifyUser}
+                              favourite={favourite}
+                            />
+                          </Container>
+                        </Grid.Column>
+                      );
+                    })}
+              </Grid>
+            )}
+          </HamburgerMenu>
+        </div>
+      )}
     </div>
   );
 };

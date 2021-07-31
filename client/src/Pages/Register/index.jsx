@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Button,
   Form,
@@ -9,7 +9,7 @@ import {
   Icon,
 } from "semantic-ui-react";
 import Axios from "axios";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Register.scss";
 import Navbar from "../../Components/Navigation/index";
 import "semantic-ui-css/semantic.min.css";

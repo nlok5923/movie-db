@@ -6,7 +6,6 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var session = require('express-session');
 var bodyParser = require('body-parser')
-const port = 5000 || process.env.PORT;
 const { dbSetup } = require('./connections/db')
 require('dotenv').config();
 
@@ -34,7 +33,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.listen(port, (req, res) => {
+app.listen(process.env.PORT || 5000, (req, res) => {
   console.log("app is listening ");
 })
 

@@ -1,6 +1,5 @@
 import "./Landing.scss";
-import { useState, useEffect } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import Navbar from "../../Components/Navigation/index";
 
