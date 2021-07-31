@@ -2,7 +2,6 @@ nav.navbar{
     display: flex;
     justify-content: space-between;
     padding: 15px;
-    margin-top: 10px;
 }
 .logo a{
     font-size: 25px;
@@ -20,8 +19,6 @@ nav ul.navLink{
 }
 .navLink li{
     cursor: pointer;
-    // margin-left: 20px;
-    margin-top: -20px;
 }
 .navLink li:hover{
     color: #03256c;

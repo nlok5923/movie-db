@@ -3,16 +3,22 @@
     height: 4vh;
     width: 50%;
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: 2px;
     outline: none;
-    border: 1px solid black;
+    border: 0.2px solid black;
     display: block;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
 }
 
 .search-box {
-    height: 30vh;
+    height: 10vh;
     width: 80%;
+    
+    label {
+        font-size: 20px;
+    }
+}
+
+::-webkit-input-placeholder { 
+    font-size: 15px;
+    padding-left: 10px;
 }

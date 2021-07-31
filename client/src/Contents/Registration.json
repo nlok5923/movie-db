@@ -1,0 +1,19 @@
+{
+    "formElement": [
+        {
+            "name": "email",
+            "placeholder": "Enter your email",
+            "type": "email"
+        },
+        {
+            "name": "password",
+            "placeholder": "Set password",
+            "type": "password"
+        },
+        {
+            "name": "re-password",
+            "placeholder": "Re renter the password",
+            "type": "password"
+        }
+    ]
+}

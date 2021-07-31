@@ -11,10 +11,7 @@ import {
 import Axios from "axios";
 import { useHistory, Redirect } from "react-router-dom";
 import "./Login.scss";
-import useAuthStatus from "../../Utils/customHooks/user";
-import useToken from "../../Utils/customHooks/token";
 import Navbar from "../../Components/Navigation/index";
-import Loader from "../../Components/Loader/index";
 
 const LoginForm = () => {
   const labelStyle = { fontSize: "15px" };
@@ -24,8 +21,6 @@ const LoginForm = () => {
     password: "",
   });
 
-  const { setToken } = useToken();
-  const { getStatus } = useAuthStatus();
   const history = useHistory();
   const setInfo = (e) => {
     setUserInfo({
@@ -33,17 +28,6 @@ const LoginForm = () => {
       [e.target.name]: e.target.value,
     });
   };
-  var [isLoading, setLoading] = useState(true);
-  var [auth, setAuth] = useState();
-
-  useEffect(() => {
-    const checkStatus = async () => {
-      const isAuthenticated = await getStatus();
-      setAuth(isAuthenticated);
-      setLoading(false);
-    };
-    checkStatus();
-  }, [getStatus]);
 
   const sendData = async () => {
     const { email, password } = userInfo;
@@ -53,15 +37,13 @@ const LoginForm = () => {
     };
     try {
       const response = await Axios.post(
-        "https://aqueous-ridge-34051.herokuapp.com/login",
+        "http://localhost:5000/login",
         userData
       );
-      const token = response.data.token;
       const errorMessage = response.data.errorMessage;
       if (errorMessage) {
         seterrMessage(errorMessage);
       } else {
-        setToken(token);
         history.push("/dashboard");
       }
     } catch (err) {
@@ -89,28 +71,24 @@ const LoginForm = () => {
 
   return (
     <Container>
-      {isLoading && <Loader />}
-      {!isLoading && auth && <Redirect to="/dashboard" />}
-      {!isLoading && !auth && (
-        <div>
-          <Navbar />
-          <Segment>
-            <Header as="h2" icon textAlign="center">
-              <Icon name="hand peace" circular />
-              <Header.Content>Welcome Back!! 👏</Header.Content>
-            </Header>
-            <Form error={!!errMessage}>
-              {formElements.map((element, index) =>
-                renderFormElement(element.name, element.placeholder)
-              )}
-              <Button type="submit" primary onClick={() => sendData()}>
-                Login
-              </Button>
-              <Message error header="Oops!!" content={errMessage} />
-            </Form>
-          </Segment>
-        </div>
-      )}
+      <div>
+        <Navbar />
+        <Segment>
+          <Header as="h2" icon textAlign="center">
+            <Icon name="hand peace" circular />
+            <Header.Content>Welcome Back!! 👏</Header.Content>
+          </Header>
+          <Form error={!!errMessage}>
+            {formElements.map((element, index) =>
+              renderFormElement(element.name, element.placeholder)
+            )}
+            <Button type="submit" primary onClick={() => sendData()}>
+              Login
+            </Button>
+            <Message error header="Oops!!" content={errMessage} />
+          </Form>
+        </Segment>
+      </div>
     </Container>
   );
 };
