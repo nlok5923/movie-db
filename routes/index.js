@@ -19,7 +19,7 @@ router.post("/register", async (req, res, next) => {
       return;
     }
 
-    const userData = new userSchema({
+    const userData = new User({
       email: req.body.email,
       password: hash,
     });

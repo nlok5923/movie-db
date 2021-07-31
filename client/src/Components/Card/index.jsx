@@ -1,31 +1,34 @@
 import React from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { Card, Image, Button } from "semantic-ui-react";
 import "./Card.scss";
 import Axios from "axios";
-import { Toaster } from 'react-hot-toast';
 
 const CardComponent = (props) => {
   const addToFavourites = async (id) => {
-    if(props.favourite.includes(id)) {
+    if (props.favourite.includes(id)) {
       props.notifyUser(false);
     } else {
       props.favourite.push(id);
       props.notifyUser(true);
-      const endpoint = "https://quiet-garden-23258.herokuapp.com/dashboard/favourite";
+      const endpoint =
+        "https://quiet-garden-23258.herokuapp.com/dashboard/favourite";
       await Axios.post(endpoint, { id: id });
     }
   };
 
   const deleteFromFavourite = async (id) => {
     console.log(id);
-    const endpoint = "https://quiet-garden-23258.herokuapp.com/dashboard/delete-favourite/" + id;
-    Axios.delete(endpoint, { id: id }).then(() => props.fetchFavourite);
-    window.location.reload();
+    const endpoint =
+      "https://quiet-garden-23258.herokuapp.com/dashboard/delete-favourite/" +
+      id;
+    Axios.delete(endpoint);
+    setTimeout(() => {
+      window.location.reload();
+    }, 600);
   };
 
   return (
     <Card>
-      {/* <Toaster /> */}
       <Image src={props.data.Poster} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{props.data.Title}</Card.Header>
