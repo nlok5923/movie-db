@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [search, setSearch] = useState("avengers");
   const [movies, setMovies] = useState([]);
   const apiPrefx =
-    "http://www.omdbapi.com/?apikey=" + process.env.REACT_APP_API_KEY;
+    "https://www.omdbapi.com/?apikey=" + process.env.REACT_APP_API_KEY;
   const [favourite, setFavouite] = useState([]);
   const [auth, setAuth] = useState(true);
 

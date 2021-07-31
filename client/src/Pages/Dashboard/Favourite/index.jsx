@@ -15,7 +15,7 @@ const Favourite = () => {
   const [movies, setMovies] = useState([]);
   const [auth, setAuth] = useState(true);
   const apiPrefx =
-    "http://www.omdbapi.com/?apikey=" + process.env.REACT_APP_API_KEY;
+    "https://www.omdbapi.com/?apikey=" + process.env.REACT_APP_API_KEY;
 
   const fetchFavourite = () => {
     const endpoint = "https://quiet-garden-23258.herokuapp.com/dashboard/all-favourite";
