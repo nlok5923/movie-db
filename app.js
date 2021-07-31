@@ -26,10 +26,6 @@ app.use(
 
 app.use('/', indexRouter);
 
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
 app.listen(process.env.PORT || 5000, (req, res) => {
   console.log("app is listening ");
 })

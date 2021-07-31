@@ -10,7 +10,7 @@ const BurgerMenu = (props) => {
   const history = useHistory();
 
   const logoutUser = () => {
-      const endpoint = "http://localhost:5000/logout";
+      const endpoint = "https://quiet-garden-23258.herokuapp.com/logout";
       Axios.post(endpoint); 
       history.push("/")
   };

@@ -55,7 +55,7 @@ const SignupForm = () => {
       email,
     };
     try {
-      const data = await Axios.post("http://localhost:5000/register", userData);
+      const data = await Axios.post("https://quiet-garden-23258.herokuapp.com/register", userData);
       const errorMessage = data.data.errorMessage;
       if (errorMessage) {
         seterrMessage(errorMessage);

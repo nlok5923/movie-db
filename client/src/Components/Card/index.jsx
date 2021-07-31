@@ -11,14 +11,14 @@ const CardComponent = (props) => {
     } else {
       props.favourite.push(id);
       props.notifyUser(true);
-      const endpoint = "http://localhost:5000/dashboard/favourite";
+      const endpoint = "https://quiet-garden-23258.herokuapp.com/dashboard/favourite";
       await Axios.post(endpoint, { id: id });
     }
   };
 
   const deleteFromFavourite = async (id) => {
     console.log(id);
-    const endpoint = "http://localhost:5000/dashboard/delete-favourite/" + id;
+    const endpoint = "https://quiet-garden-23258.herokuapp.com/dashboard/delete-favourite/" + id;
     Axios.delete(endpoint, { id: id }).then(() => props.fetchFavourite);
     window.location.reload();
   };

@@ -18,7 +18,7 @@ const Favourite = () => {
     "http://www.omdbapi.com/?apikey=" + process.env.REACT_APP_API_KEY;
 
   const fetchFavourite = () => {
-    const endpoint = "http://localhost:5000/dashboard/all-favourite";
+    const endpoint = "https://quiet-garden-23258.herokuapp.com/dashboard/all-favourite";
     let moviesInfo = [];
     Axios.get(endpoint).then((data) => {
       data.data.map((imdbId) => {
@@ -34,7 +34,7 @@ const Favourite = () => {
   };
 
   const checkAuth = () => {
-    const endpoint = "http://localhost:5000/check-auth";
+    const endpoint = "https://quiet-garden-23258.herokuapp.com/check-auth";
     Axios.get(endpoint).then((status) => {
       console.log(status);
       setAuth(status.data);
