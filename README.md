@@ -47,3 +47,8 @@ well.
 ## Authentication
 - this app used simple session based authentication.
 
+## Test accounts
+- Email: this@gmail.com
+- password: 123456
+
+
